@@ -14,3 +14,5 @@ systemctl start catalogue
 cp mongo.repo /etc/yum.repos.d/mongo.repo
 yum install mongodb-org-shell -y
 mongo --host mongodb.mohindhar.tech </app/schema/catalogue.js
+
+#update the catalogue server IP address in frontend file - /etc/nginx/default.d/roboshop.conf
