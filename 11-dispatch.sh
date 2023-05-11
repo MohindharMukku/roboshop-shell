@@ -8,7 +8,7 @@ cd /app
 go mod init dispatch
 go get
 go build
-cp 11-dispatch.service /etc/systemd/system/dispatch.service
+cp dispatch.service /etc/systemd/system/dispatch.service
 systemctl daemon-reload
 systemctl enable dispatch
 systemctl start dispatch

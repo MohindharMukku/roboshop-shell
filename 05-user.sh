@@ -7,7 +7,7 @@ cd /app
 unzip /tmp/user.zip
 cd /app
 npm install
-cp cp 05-user.service /etc/systemd/system/user.service
+cp cp user.service /etc/systemd/system/user.service
 systemctl enable user
 systemctl start user
 cp mongo.repo /etc/yum.repos.d/mongo.repo
