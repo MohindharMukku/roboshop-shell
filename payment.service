@@ -4,11 +4,11 @@ Description=Payment Service
 [Service]
 User=root
 WorkingDirectory=/app
-Environment=CART_HOST=cart.mohindhar.tech
+Environment=CART_HOST=cart.dev.mohindhar.tech
 Environment=CART_PORT=8080
-Environment=USER_HOST=user.mohindhar.tech
+Environment=USER_HOST=user.dev.mohindhar.tech
 Environment=USER_PORT=8080
-Environment=AMQP_HOST=rabbitmq.mohindhar.tech
+Environment=AMQP_HOST=rabbitmq.dev.mohindhar.tech
 Environment=AMQP_USER=roboshop
 Environment=AMQP_PASS=roboshop123
 
