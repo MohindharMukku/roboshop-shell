@@ -18,7 +18,7 @@ echo -e "\e[35m<<<<<<<<<<<< installing the npm  >>>>>>>>>>>>\e[0m"
 npm install
 
 echo -e "\e[35m<<<<<<<<<<<< cping the catalogue.service file to correct directory >>>>>>>>>>>>\e[0m"
-cp catalogue.service /etc/systemd/system/catalogue.service
+cp /home/centos/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service
 
 echo -e "\e[35m<<<<<<<<<<<< starting the daemon >>>>>>>>>>>>\e[0m"
 systemctl daemon-reload
@@ -28,12 +28,12 @@ systemctl enable catalogue
 systemctl restart catalogue
 
 echo -e "\e[35m<<<<<<<<<<<< cping the mongo.repo file into correct directory >>>>>>>>>>>>\e[0m"
-cp mongo.repo /etc/yum.repos.d/mongo.repo
+cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo
 
 echo -e "\e[35m<<<<<<<<<<<< installing the mongodb >>>>>>>>>>>>\e[0m"
 yum install mongodb-org-shell -y
 
 echo -e "\e[35m<<<<<<<<<<<< loading the schema >>>>>>>>>>>>\e[0m"
-mongo --host mongodb.mohindhar.tech </app/schema/catalogue.js
+mongo --host mongodb.dev.mohindhar.tech </app/schema/catalogue.js
 
 #update the catalogue server IP address in frontend file - /etc/nginx/default.d/roboshop.conf
