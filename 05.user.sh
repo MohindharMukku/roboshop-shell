@@ -27,7 +27,7 @@ systemctl enable user
 systemctl start user
 
 echo -e "\e[35m<<<<<<<<<<<< cping the mongo.repo file into right directory >>>>>>>>>>>>\e[0m"
-cp mongo.repo /etc/yum.repos.d/mongo.repo
+cp 02.mongo.repo /etc/yum.repos.d/02.mongo.repo
 
 echo -e "\e[35m<<<<<<<<<<<< install mongodb service >>>>>>>>>>>>\e[0m"
 yum install mongodb-org-shell -y
