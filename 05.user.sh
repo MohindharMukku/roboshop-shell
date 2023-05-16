@@ -1,6 +1,3 @@
-echo -e "\e[35m<<<<<<<<<<<< changing the hostname  >>>>>>>>>>>>\e[0m"
-sudo bash set-hostname 05-user
-
 
 echo -e "\e[35m<<<<<<<<<<<< downloading  and installing node js >>>>>>>>>>>>\e[0m"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
@@ -23,7 +20,7 @@ echo -e "\e[35m<<<<<<<<<<<< installing the npm service >>>>>>>>>>>>\e[0m"
 npm install
 
 echo -e "\e[35m<<<<<<<<<<<< cping the user.service file into the right directory >>>>>>>>>>>>\e[0m"
-cp cp /home/centos/roboshop-shell/05.user.service /etc/systemd/system/user.service
+cp /home/centos/roboshop-shell/05.user.service /etc/systemd/system/user.service
 
 echo -e "\e[35m<<<<<<<<<<<< start the user service >>>>>>>>>>>>\e[0m"
 systemctl enable user
