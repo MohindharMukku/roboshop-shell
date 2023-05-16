@@ -20,14 +20,14 @@ echo -e "\e[35m<<<<<<<<<<<< installing the npm service >>>>>>>>>>>>\e[0m"
 npm install
 
 echo -e "\e[35m<<<<<<<<<<<< cping the user.service file into the right directory >>>>>>>>>>>>\e[0m"
-cp cp user.service /etc/systemd/system/user.service
+cp cp /home/centos/roboshop-shell/05.user.service /etc/systemd/system/user.service
 
 echo -e "\e[35m<<<<<<<<<<<< start the user service >>>>>>>>>>>>\e[0m"
 systemctl enable user
 systemctl start user
 
 echo -e "\e[35m<<<<<<<<<<<< cping the mongo.repo file into right directory >>>>>>>>>>>>\e[0m"
-cp 02.mongo.repo /etc/yum.repos.d/02.mongo.repo
+cp /home/centos/roboshop-shell/02.mongo.repo /etc/yum.repos.d/mongo.repo
 
 echo -e "\e[35m<<<<<<<<<<<< install mongodb service >>>>>>>>>>>>\e[0m"
 yum install mongodb-org-shell -y
