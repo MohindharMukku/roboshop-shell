@@ -1,5 +1,3 @@
-echo -e "\e[35m<<<<<<<<<<<< changing the hostname  >>>>>>>>>>>>\e[0m"
-sudo bash set-hostname 02-mongodb
 
 echo -e "\e[35m<<<<<<<<<<<< setting up the mongo.repo file  >>>>>>>>>>>>\e[0m"
 cp /home/centos/roboshop/02.mongo.repo /etc/yum.repos.d/mongo.repo
