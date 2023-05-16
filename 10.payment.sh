@@ -1,5 +1,3 @@
-echo -e "\e[35m<<<<<<<<<<<< changing the hostname  >>>>>>>>>>>>\e[0m"
-sudo bash set-hostname 10.payment
 
 echo -e "\e[35m<<<<<<<<<<<< installing the python package >>>>>>>>>>>>\e[0m"
 yum install python36 gcc python3-devel -y
