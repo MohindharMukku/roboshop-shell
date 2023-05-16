@@ -1,3 +1,6 @@
+echo -e "\e[35m<<<<<<<<<<<< changing the hostname  >>>>>>>>>>>>\e[0m"
+sudo bash set-hostname 08-shipping
+
 echo -e "\e[35m<<<<<<<<<<<< installing the maven >>>>>>>>>>>>\e[0m"
 yum install maven -y
 

@@ -1,3 +1,6 @@
+echo -e "\e[35m<<<<<<<<<<<< changing the hostname  >>>>>>>>>>>>\e[0m"
+sudo bash set-hostname 06-cart
+
 echo -e "\e[35m<<<<<<<<<<<< start the user service >>>>>>>>>>>>\e[0m"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 

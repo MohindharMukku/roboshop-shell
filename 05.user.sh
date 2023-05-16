@@ -1,3 +1,6 @@
+echo -e "\e[35m<<<<<<<<<<<< changing the hostname  >>>>>>>>>>>>\e[0m"
+sudo bash set-hostname 05-user
+
 
 echo -e "\e[35m<<<<<<<<<<<< downloading  and installing node js >>>>>>>>>>>>\e[0m"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash

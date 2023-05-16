@@ -1,3 +1,6 @@
+echo -e "\e[35m<<<<<<<<<<<< changing the hostname  >>>>>>>>>>>>\e[0m"
+sudo bash set-hostname 11.dispatch
+
 echo -e "\e[35m<<<<<<<<<<<< installing the golang >>>>>>>>>>>>\e[0m"
 yum install golang -y
 

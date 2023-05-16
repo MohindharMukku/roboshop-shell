@@ -1,3 +1,6 @@
+echo -e "\e[35m<<<<<<<<<<<< changing the hostname  >>>>>>>>>>>>\e[0m"
+sudo bash set-hostname 01.frontend
+
 echo -e "\e[35m<<<<<<<<<<<< Installing nginx >>>>>>>>>>>>\e[0m"
 yum install nginx -y
 

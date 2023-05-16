@@ -1,3 +1,5 @@
+echo -e "\e[35m<<<<<<<<<<<< changing the hostname  >>>>>>>>>>>>\e[0m"
+sudo bash set-hostname 07-mysql
 echo -e "\e[35m<<<<<<<<<<<< starting the mysql service >>>>>>>>>>>>\e[0m"
 dnf module disable mysql -y
 

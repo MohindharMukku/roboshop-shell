@@ -1,3 +1,6 @@
+echo -e "\e[35m<<<<<<<<<<<< changing the hostname  >>>>>>>>>>>>\e[0m"
+sudo bash set-hostname 09-rabbitmq
+
 echo -e "\e[35m<<<<<<<<<<<< installing the erlang package >>>>>>>>>>>>\e[0m"
 curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash
 yum install erlang -y
