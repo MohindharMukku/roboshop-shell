@@ -3,7 +3,7 @@
 #its always important to log the output results
 app_usr=roboshop
 script_path=$(realpath "$0")
-script_dir=$(diranme "$script_path")
+script_dir=$(dirname "$script_path")
 log_file=/tmp/roboshop.log
 #------------------------------------
 #head function

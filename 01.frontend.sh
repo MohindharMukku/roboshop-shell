@@ -10,7 +10,7 @@ yum install nginx -y &>>$log_file
 function_status $?
 
 echo -e "\e[35m<<<<<<<<<<<< cping the frontend content  >>>>>>>>>>>>\e[0m"
-cp 01.roboshop.conf  /etc/nginx/default.d/roboshop.conf
+cp 01.roboshop.conf  /etc/nginx/default.d/roboshop.conf #here i'm not changing th epath, so i'm no need to give the path of config file
 #cp /home/centos/roboshop-shell/01.roboshop.conf  /etc/nginx/default.d/roboshop.conf
 function_status $?
 
