@@ -9,10 +9,7 @@ function_heading "Installing nginx"
 yum install nginx -y &>>$log_file
 function_status $?
 
-echo -e "\e[35m<<<<<<<<<<<< cping the frontend content  >>>>>>>>>>>>\e[0m"
-cp 01.roboshop.conf  /etc/nginx/default.d/roboshop.conf &>>$log_file #here i'm not changing th epath, so i'm no need to give the path of config file
-#cp /home/centos/roboshop-shell/01.roboshop.conf  /etc/nginx/default.d/roboshop.conf
-function_status $?
+
 
 function_heading "removing the nginx content"
 rm -rf /usr/share/nginx/html/* &>>$log_file
@@ -26,6 +23,11 @@ function_status $?
 function_heading "Extracting the App content"
 cd /usr/share/nginx/html &>>$log_file
 unzip /tmp/frontend.zip &>>$log_file
+function_status $?
+
+echo -e "\e[35m<<<<<<<<<<<< cping the frontend content  >>>>>>>>>>>>\e[0m"
+cp 01.roboshop.conf  /etc/nginx/default.d/roboshop.conf &>>$log_file #here i'm not changing th epath, so i'm no need to give the path of config file
+#cp /home/centos/roboshop-shell/01.roboshop.conf  /etc/nginx/default.d/roboshop.conf
 function_status $?
 
 echo -e "\e[35m<<<<<<<<<<<< starting the nginx >>>>>>>>>>>>\e[0m"
