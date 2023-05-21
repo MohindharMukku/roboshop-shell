@@ -1,22 +1,35 @@
+#its better to use the 'realpath' cmd with dirname cmd than pwd cmd, because the 'realpath' cmd  ensures that you get the actual path of the file, regardless of any symbolic links or relative paths used.
 
-echo -e "\e[35m<<<<<<<<<<<< Installing nginx >>>>>>>>>>>>\e[0m"
-yum install nginx -y
 
-echo -e "\e[35m<<<<<<<<<<<< removing the nginx content >>>>>>>>>>>>\e[0m"
-rm -rf /usr/share/nginx/html/*
+common_file=$(realpath "$0") #double quotes is used here to ensure filename as a single entity
+common_file_path=$(dirname "$common_file")
+source ${common_file_path}/00.common.sh
 
-echo -e "\e[35m<<<<<<<<<<<< dowloading the artifacts >>>>>>>>>>>>\e[0m"
-curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend.zip
-
-echo -e "\e[35m<<<<<<<<<<<< changind the dir  >>>>>>>>>>>>\e[0m"
-cd /usr/share/nginx/html
-
-echo -e "\e[35m<<<<<<<<<<<< unzipping the frontend content >>>>>>>>>>>>\e[0m"
-unzip /tmp/frontend.zip
+function_heading "Installing nginx"
+yum install nginx -y &>>$log_file
+function_status $?
 
 echo -e "\e[35m<<<<<<<<<<<< cping the frontend content  >>>>>>>>>>>>\e[0m"
-cp /home/centos/roboshop-shell/01.roboshop.conf  /etc/nginx/default.d/roboshop.conf
+cp 01.roboshop.conf  /etc/nginx/default.d/roboshop.conf
+#cp /home/centos/roboshop-shell/01.roboshop.conf  /etc/nginx/default.d/roboshop.conf
+function_status $?
+
+function_heading "removing the nginx content"
+rm -rf /usr/share/nginx/html/* &>>$log_file
+function_status $?
+
+function_heading "Dowloading the app content"
+curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend.zip &>>$log_file
+function_status $?
+
+
+function_heading "Extracting the App content"
+cd /usr/share/nginx/html &>>$log_file
+unzip /tmp/frontend.zip &>>$log_file
+function_status $?
 
 echo -e "\e[35m<<<<<<<<<<<< starting the nginx >>>>>>>>>>>>\e[0m"
-systemctl enable nginx
-systemctl restart nginx
+function_heading "Starting the nginx"
+systemctl enable nginx &>>$log_file
+systemctl restart nginx &>>$log_file
+function_status $?
