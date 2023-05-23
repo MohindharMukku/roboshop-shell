@@ -87,7 +87,7 @@ function_schema_setup () {
 
     function_heading " load schema "
     mysql -h mysql-dev.rdevopsb72.online -uroot -p${mysql_root_password} < /app/schema/${component}.sql &>>$log_file
-    func_stat_check $?
+    function_status $?
   fi
 }
 
