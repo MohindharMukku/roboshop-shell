@@ -32,10 +32,9 @@ function_systemd_setup () {
 
   function_heading "renameing the service file"
   directory=$script_dir
-  file=$(find "$directory" -type f)
+  file=$(find "$directory" -type f -name "*${component}.service*")
   for file in $file; do
     filename=$(basename "$file")
-
     #Extract the file name without the float value using reguular expression
     new_filename=$(echo "$filename" | sed 's/^[0-9]*\.//')
 
@@ -46,6 +45,7 @@ function_systemd_setup () {
         echo "Renamed $file to $new_path"
       fi
       done
+  function_status $?
   function_heading "coping the service file"
   find ${script_dir} -type f -name "*${component}.service"
   cp ${script_dir}/${component}.service /etc/systemd/system/${component}.service &>>$log_file
@@ -130,7 +130,7 @@ function_nodejs () {
 
   function_heading "install NodeJS"
   yum install nodejs -y &>>$log_file
-  function_status $?
+  function_status $?false
 
   function_app_prereq #function in a function
 
