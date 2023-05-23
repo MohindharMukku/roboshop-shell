@@ -7,7 +7,6 @@ script_dir=$(dirname "$script_path")
 log_file=/tmp/roboshop.log
 #------------------------------------
 #head function
-
 function_heading () {
  echo -e "\e[35m<<<<<<<<<<<< $1 >>>>>>>>>>>>\e[0m"
  echo -e "\e[35m<<<<<<<<<<<< $1 on  $(date) >>>>>>>>>>>>\e[0m" &>>$log_file
