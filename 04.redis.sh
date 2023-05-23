@@ -4,4 +4,4 @@ source ${common_file_path}/00.common.sh
 
 service=redis
 function_redis
-function_systemd_setup
+function_systemd_setup #if it fails move the systemd part into the function_redis
