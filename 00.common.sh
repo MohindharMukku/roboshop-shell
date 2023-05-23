@@ -79,7 +79,7 @@ function_schema_setup () {
 # app pre-req
 function_app_prereq () {
   function_heading "create Application user"
-  id ${app_user} &>>$/tmp/roboshop.log
+  id ${app_user} &>>$log_file
   if [ $? -ne 0 ]; then
     useradd ${app_user} &>>/tmp/roboshop.log
   fi
