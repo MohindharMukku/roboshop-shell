@@ -46,6 +46,7 @@ function_systemd_setup () {
         mv "$file" "$new_path"  # Rename the file
         echo "Renamed $file to $new_path"
       fi
+      done
   function_heading "coping the service file"
   find ${script_dir} -type f -name "*${component}.service"
   cp ${script_dir}/${component}.service /etc/systemd/system/${component}.service &>>$log_file
@@ -60,7 +61,6 @@ function_systemd_setup () {
   systemctl enable $component &>>$log_file
   systemctl restart $component &>>$log_file
   function_status $?
-
 }
 
 #-------------------------------------------
