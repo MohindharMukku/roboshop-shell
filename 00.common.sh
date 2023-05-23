@@ -34,20 +34,21 @@ function_systemd_setup () {
   directory=$script_dir
   file=$(find "$directory" -type f -name "*${component}.service*")
   for file in $file; do
-    filename=$(basename "$file")
-    #Extract the file name without the float value using reguular expression
-    new_filename=$(echo "$filename" | sed 's/^[0-9]*\.//')
+    filename=$(basename "$file") &>>$log_file
+
+    #Extract the file name without the float value using the regular expression
+    new_filename=$(echo "$filename" | sed 's/^[0-9]*\.//') &>>$log_file &>>$log_file
 
     #rename the file by replacing the orignal file name with the new file name
      if [ "$filename" != "$new_filename" ]; then
         new_path="${script_dir}/$new_filename"  # Create the new path with the updated file name
         mv "$file" "$new_path"  # Rename the file
-        echo "Renamed $file to $new_path"
+        echo "Renamed $file to $new_path" &>>$log_file
       fi
       done
   function_status $?
   function_heading "coping the service file"
-  find ${script_dir} -type f -name "*${component}.service"
+  find ${script_dir} -type f -name "*${component}.service" &>>$log_file
   cp ${script_dir}/${component}.service /etc/systemd/system/${component}.service &>>$log_file
   function_status $?
 
@@ -55,7 +56,7 @@ function_systemd_setup () {
   systemctl daemon-reload &>>$log_file
   function_status $?
 
-  echo -e "\e[35m<<<<<<<<<<<< starting the catalogue>>>>>>>>>>>>\e[0m"
+  echo -e "\e[35m<<<<<<<<<<<< starting the catalogue >>>>>>>>>>>>\e[0m"
   function_heading "starting the $component"
   systemctl enable $component &>>$log_file
   systemctl restart $component &>>$log_file
