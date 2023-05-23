@@ -88,7 +88,7 @@ function_app_prereq () {
   function_heading "Create Application Directory"
   rm -rf /app &>>$log_file
   mkdir /app &>>$log_file
-  function_status
+  function_status $?
 
   function_heading "Download Application Content"
   curl -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip &>>$log_file
