@@ -87,7 +87,7 @@ function_app_prereq () {
 
   function_heading "Create Application Directory"
   rm -rf /app &>>$log_file
-  mkdir /app &>>log_file
+  mkdir /app &>>$log_file
   function_status
 
   function_heading "Download Application Content"
