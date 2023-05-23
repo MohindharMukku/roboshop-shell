@@ -17,10 +17,10 @@ function_heading () {
 
 function_status () {
 if [ $1 -eq 0 ]; then
-  echo -e "\e[32m -----SUCCESS-----\e[0m"
+  echo -e "\e[32m -----SUCCESS-----\e[0m" &>>$log_file
 else
-  echo -e "\e[31m -----FAILURE-----\e[0m"
-  echo -e "\e[33m -----refer to the log file /tmp/roboshop.log for more info -----\e[0m"
+  echo -e "\e[31m -----FAILURE-----\e[0m" &>>$log_file
+  echo -e "\e[33m -----refer to the log file /tmp/roboshop.log for more info -----\e[0m" &>>$log_file
   exit 1
 fi
 }
@@ -29,24 +29,25 @@ fi
 #systemctl and component services  services
 
 function_systemd_setup () {
-
   function_heading "renameing the service file"
-  directory=$script_dir
-  file=$(find "$directory" -type f -name "*${component}.service*")
-  for file in $file; do
-    filename=$(basename "$file") &>>$log_file
+  #converting the service file name into the normal ex: 03.catalogue.service to catalogue.service
+  service_dir_file=$script_dir
+  service_file=$(find "$service_dir_file" -type f -name "*${component}.service*")
+  for file in $service_file; do
+    old_filename=$(basename "$service_file") &>>$log_file
 
     #Extract the file name without the float value using the regular expression
-    new_filename=$(echo "$filename" | sed 's/^[0-9]*\.//') &>>$log_file &>>$log_file
+    new_filename=$(echo "$old_filename" | sed 's/^[0-9]*\.//') &>>$log_file
 
     #rename the file by replacing the orignal file name with the new file name
-     if [ "$filename" != "$new_filename" ]; then
+     if [ "$old_filename" != "$new_filename" ]; then
         new_path="${script_dir}/$new_filename"  # Create the new path with the updated file name
-        mv "$file" "$new_path"  # Rename the file
-        echo "Renamed $file to $new_path" &>>$log_file
+        mv "$service_file" "$new_service_file"  # Rename the file
+        echo "Renamed $service_file to $new_path" &>>$log_file
       fi
       done
   function_status $?
+
   function_heading "coping the service file"
   find ${script_dir} -type f -name "*${component}.service" &>>$log_file
   cp ${script_dir}/${component}.service /etc/systemd/system/${component}.service &>>$log_file
@@ -56,11 +57,17 @@ function_systemd_setup () {
   systemctl daemon-reload &>>$log_file
   function_status $?
 
-  echo -e "\e[35m<<<<<<<<<<<< starting the catalogue >>>>>>>>>>>>\e[0m"
   function_heading "starting the $component"
   systemctl enable $component &>>$log_file
   systemctl restart $component &>>$log_file
   function_status $?
+
+  if [ "$service" == 'redis']; then
+    function_heading "starting the $service service"
+    systemctl enable $service  &>>$log_file
+    systemctl restart $service &>>$log_file
+    function_status $?
+   fi
 }
 
 #-------------------------------------------
@@ -143,3 +150,23 @@ function_nodejs () {
   function_systemd_setup   #function in a function
 
 }
+
+
+#------------------------------------------
+#installation of REDIS
+function_redis() {
+  function_heading "Downloading the rpms package for redis installation "
+  yum install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y &>>$log_file
+  dnf module enable redis:remi-6.2 -y &>>$log_file
+  function_status $?
+
+  function_heading "Installing the redis"
+  yum install redis -y &>>$log_file
+  function_status $?
+
+  function_heading "updating the listening port"
+  # update the ip address from 127.0.0.1 to 0.0.0.0 in /etc/redis.conf & /etc/redis/redis.conf
+  sed -i -e 's|127.0.0.1|0.0.0.0|' /etc/redis.conf /etc/redis/redis.conf &>>$log_file
+  function_status $?
+}
+
