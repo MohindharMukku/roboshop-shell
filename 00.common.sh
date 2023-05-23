@@ -30,7 +30,24 @@ fi
 #systemctl and component services  services
 
 function_systemd_setup () {
+
+  function_heading "renameing the service file"
+  directory=$script_dir
+  file=$(find "$directory" -type f)
+  for file in $file; do
+    filename=$(basename "$file")
+
+    #Extract the file name without the float value using reguular expression
+    new_filename=$(echo "$filename" | sed 's/^[0-9]*\.//')
+
+    #rename the file by replacing the orignal file name with the new file name
+     if [ "$filename" != "$new_filename" ]; then
+        new_path="${script_dir}/$new_filename"  # Create the new path with the updated file name
+        mv "$file" "$new_path"  # Rename the file
+        echo "Renamed $file to $new_path"
+      fi
   function_heading "coping the service file"
+  find ${script_dir} -type f -name "*${component}.service"
   cp ${script_dir}/${component}.service /etc/systemd/system/${component}.service &>>$log_file
   function_status $?
 
