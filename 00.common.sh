@@ -130,7 +130,7 @@ function_nodejs () {
 
   function_heading "install NodeJS"
   yum install nodejs -y &>>$log_file
-  function_status $?false
+  function_status $?
 
   function_app_prereq #function in a function
 
