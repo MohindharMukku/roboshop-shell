@@ -5,7 +5,7 @@ source ${common_file_path}/00.common.sh
 
 
 component=catalogue
-schema_setup=my_sql
+schema_setup=mongo
 function_nodejs
 
 #update the catalogue server IP address in frontend file - /etc/nginx/default.d/01.roboshop.conf
