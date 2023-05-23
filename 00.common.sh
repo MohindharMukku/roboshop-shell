@@ -31,7 +31,7 @@ fi
 
 function_systemd_setup () {
   function_heading "coping the service file"
-  cp ${component}.service /etc/systemd/system/${component}.service &>>$log_file
+  cp ${script_dir}/${component}.service /etc/systemd/system/${component}.service &>>$log_file
   function_status $?
 
   function_heading "Starting the Demon"
