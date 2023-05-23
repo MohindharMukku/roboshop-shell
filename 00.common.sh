@@ -96,7 +96,7 @@ function_app_prereq () {
 
   function_heading "Extract Application Content"
   cd /app &>>$log_file
-  unzip unzip /tmp/${component}.zip &>>$log_file
+  unzip /tmp/${component}.zip &>>$log_file
   function_status $?
 
   function_heading "Downloading the Dependencies"
