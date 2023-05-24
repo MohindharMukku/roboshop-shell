@@ -173,7 +173,7 @@ function_redis() {
 
 #-----------------------------------------------------
 #installation of maven
-function maven () {
+function_maven () {
   function_heading "installing maven"
   yum install maven -y &>>$log_file
   function_status $?
