@@ -173,13 +173,19 @@ function_redis() {
 
 #-----------------------------------------------------
 #installation of maven
-function_maven () {
+function_maven() {
   function_heading "installing maven"
   yum install maven -y &>>$log_file
   function_status $?
 
+  function_app_prereq
+
   function_heading "cleaning the maven "
   mvn clean package &>>$log_file
-  mv target/shipping-1.0.jar shipping.jar &>>$log_file
   function_status $?
+  mv target/${component}-1.0.jar ${component}.jar &>>$log_file
+  function_status $?
+
+  function_schema_setup
+  function_systemd_setup
 }
