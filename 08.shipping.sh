@@ -8,7 +8,8 @@ if [ -z "$mysql_root_password" ]; then
   exit
 fi
 
-component=shipping
+component="shipping"
+schema_setup=mysql
 function_maven
 
 #echo -e "\e[35m<<<<<<<<<<<< adding the user 'roboshop' >>>>>>>>>>>>\e[0m"
