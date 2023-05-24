@@ -1,7 +1,7 @@
 common_file=$(realpath "$0")
 common_file_path=$(dirname "$common_file")
 source ${common_file_path}/00.common.sh
-my_sql_root_password=$1    #RoboShop@1
+mysql_root_password=$1    #RoboShop@1
 
 if [ -z "$mysql_root_password" ]; then
   echo Input MySQL Root Password Missing
