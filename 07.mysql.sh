@@ -1,17 +1,28 @@
+common_file=$(realpath "$0")
+common_file_path=$(dirname "$common_file")
+source ${common_file_path}/00.common.sh
+my_sql_root_password=$1
 
-echo -e "\e[35m<<<<<<<<<<<< starting the mysql service >>>>>>>>>>>>\e[0m"
+function_heading "Disableing the old MySQL version"
 dnf module disable mysql -y
+function_status $?
 
-echo -e "\e[35m<<<<<<<<<<<< cping the mysql.repo file into the correct directory >>>>>>>>>>>>\e[0m"
-cp /home/centos/roboshop-shell/07.mysql.repo /etc/yum.repos.d/mysql.repo
+function_heading "Coping the mysql.repo file into the correct path"
+cp ${common_file_path}/07.mysql.repo /etc/yum.repos.d/mysql.repo
+function_status $?
 
-echo -e "\e[35m<<<<<<<<<<<< installing the mysql server >>>>>>>>>>>>\e[0m"
+function_heading "Installing the mysql server"
 yum install mysql-community-server -y
+function_status $?
 
-echo -e "\e[35m<<<<<<<<<<<< enabling and starting the mysql >>>>>>>>>>>>\e[0m"
+function_heading " Enabling and starting the mysql"
 systemctl enable mysqld
 systemctl restart mysqld
+function_status $?
 
-echo -e "\e[35m<<<<<<<<<<<< setting the usr and passwrd >>>>>>>>>>>>\e[0m"
-mysql_secure_installation --set-root-pass RoboShop@1
-mysql -uroot -pRoboShop@1
+
+function_heading "Setting the password"
+mysql_secure_installation --set-root-pass 
+function_status $?
+
+
