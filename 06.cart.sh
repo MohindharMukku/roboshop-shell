@@ -30,7 +30,7 @@ function_nodejs
 # npm install
 
 # echo -e "\e[35m<<<<<<<<<<<< cping the cart.service file into correct directory >>>>>>>>>>>>\e[0m"
-# cp /home/centos/roboshop-shell/06.cart.service /etc/systemd/system/cart.service
+# cp /home/centos/roboshop-shell/cart.service /etc/systemd/system/cart.service
 
 # echo -e "\e[35m<<<<<<<<<<<< loading & starting the cart services  >>>>>>>>>>>>\e[0m"
 # systemctl daemon-reload
