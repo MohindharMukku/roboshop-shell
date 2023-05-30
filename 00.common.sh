@@ -71,6 +71,7 @@ function_systemd_setup () {
 function_systemctl_redis () {
   function_heading "starting the $service service"
   systemctl enable $service  &>>$log_file
+   function_status $?
   systemctl restart $service &>>$log_file
   function_status $?
 }
