@@ -28,7 +28,7 @@ function_maven
 #mv target/shipping-1.0.jar shipping.jar
 #
 #echo -e "\e[35m<<<<<<<<<<<< cping the shipping.service file into the proper directory >>>>>>>>>>>>\e[0m"
-#cp /home/centos/roboshop-shell/08.shipping.service /etc/systemd/system/shipping.service
+#cp /home/centos/roboshop-shell/shipping.service /etc/systemd/system/shipping.service
 #
 #echo -e "\e[35m<<<<<<<<<<<< starting the daemon and shipping services >>>>>>>>>>>>\e[0m"
 #systemctl daemon-reload
