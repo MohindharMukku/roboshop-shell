@@ -64,13 +64,19 @@ function_systemd_setup () {
   systemctl restart $component &>>$log_file
   function_status $?
 
-  if [ "$service" == 'redis']; then
-    function_heading "starting the $service service"
-    systemctl enable $service  &>>$log_file
-    systemctl restart $service &>>$log_file
-    function_status $?
-   fi
-}
+
+
+#------------------------------------------------------
+# systemctl redis service
+function_systemctl_redis () {
+  function_heading "starting the $service service"
+  systemctl enable $service  &>>$log_file
+  systemctl restart $service &>>$log_file
+  function_status $?
+
+}  }
+
+
 
 #---------------------------------------------------------------
 # Systemctl service for rabbitmq
@@ -180,6 +186,10 @@ function_redis() {
   function_heading "updating the listening port"
   # update the ip address from 127.0.0.1 to 0.0.0.0 in /etc/redis.conf & /etc/redis/redis.conf
   sed -i -e 's|127.0.0.1|0.0.0.0|' /etc/redis.conf /etc/redis/redis.conf &>>$log_file
+  function_status $?
+
+  function_heading "Starting & Enabling the redis"
+  function_systemctl_redis
   function_status $?
 }
 
