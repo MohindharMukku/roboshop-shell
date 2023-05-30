@@ -274,7 +274,7 @@ function_python () {
   function_status $?
 
   function_heading "Update Passwords in System Service file"
-  sed -i -e "s|rabbitmq_appuser_password|${rabbitmq_appuser_password}|" ${script_path}/payment.service &>>$log_file
+  sed -i -e "s|rabbitmq_appuser_password|${rabbitmq_appuser_password}|" ${script_dir}/payment.service &>>$log_file
   function_status $?
 
   function_systemd_setup
