@@ -185,7 +185,6 @@ function_redis() {
   sed -i -e 's|127.0.0.1|0.0.0.0|' /etc/redis.conf /etc/redis/redis.conf &>>$log_file
   function_status $?
 
-  function_heading "Starting & Enabling the redis"
   function_systemctl
 }
 
