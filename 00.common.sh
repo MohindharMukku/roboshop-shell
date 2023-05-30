@@ -278,3 +278,5 @@ function_python () {
   function_systemd_setup
 
 }
+
+#sudo systemctl restart catalogue ; sudo  tail -f /var/log/messages
