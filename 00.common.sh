@@ -273,9 +273,9 @@ function_python () {
   pip3.6 install -r requirements.txt &>>$log_file
   function_status $?
 
-  func_print_head "Update Passwords in System Service file"
+  function_heading "Update Passwords in System Service file"
   sed -i -e "s|rabbitmq_appuser_password|${rabbitmq_appuser_password}|" ${script_path}/payment.service &>>$log_file
-  func_stat_check $?
+  function_status $?
 
   function_systemd_setup
 
