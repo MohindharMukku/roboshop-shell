@@ -73,7 +73,6 @@ function_systemctl_redis () {
   systemctl enable $service  &>>$log_file
   systemctl restart $service &>>$log_file
   function_status $?
-
 }
 
 
@@ -190,7 +189,6 @@ function_redis() {
 
   function_heading "Starting & Enabling the redis"
   function_systemctl_redis
-  function_status $?
 }
 
 
