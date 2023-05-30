@@ -1,7 +1,7 @@
 #heading for installing
 #status output
 #its always important to log the output results
-app_usr=roboshop
+app_user=roboshop
 script_path=$(realpath "$0")
 script_dir=$(dirname "$script_path")
 log_file=/tmp/roboshop.log
@@ -249,7 +249,6 @@ function_rabbitmq () {
 
   function_systemctl
 
-
   function_heading "Adding the user and setting the permission"
   rabbitmqctl add_user roboshop ${rabbitmq_appuser_password} &>>$log_file
   rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"   &>>$log_file
@@ -266,7 +265,6 @@ function_python () {
   yum install python36 gcc python3-devel -y &>>"$log_file"
   function_status $?
 
-
   function_app_prereq
 
   function_heading " Install Python Dependencies"
@@ -278,7 +276,5 @@ function_python () {
   function_status $?
 
   function_systemd_setup
-
-
 
 }

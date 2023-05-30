@@ -2,8 +2,6 @@ common_file=$(realpath "$0") #double quotes is used here to ensure filename as a
 common_file_path=$(dirname "$common_file")
 source ${common_file_path}/00.common.sh
 
-
-
 component=catalogue
 schema_setup=mongo
 function_nodejs
