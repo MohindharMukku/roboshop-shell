@@ -65,7 +65,7 @@ function_systemd_setup () {
   function_status $?
 
 
-
+}
 #------------------------------------------------------
 # systemctl redis service
 function_systemctl_redis () {
@@ -74,7 +74,7 @@ function_systemctl_redis () {
   systemctl restart $service &>>$log_file
   function_status $?
 
-}  }
+}
 
 
 
