@@ -245,6 +245,7 @@ function_rabbitmq () {
 
   function_heading "Install RabbitMQ "
   yum install rabbitmq-server -y &>>$log_file
+  function_status $?
 
   function_systemctl
 
