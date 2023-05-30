@@ -3,6 +3,7 @@ common_file_path=$(dirname "$common_file")
 source ${common_file_path}/00.common.sh
 
 service=rabbitmq-server
+rabbitmq_appuser_password=$1
 
 if [ -z "$rabbitmq_appuser_password" ]; then
   echo Input Roboshop Appuser Password Missing

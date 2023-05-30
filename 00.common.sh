@@ -240,7 +240,7 @@ function_rabbitmq () {
   function_status $?
 
   function_heading " Installing the $service Server"
-  curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
+  curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash  &>>$log_file
   function_status $?
 
   function_heading "Install RabbitMQ "
@@ -250,8 +250,8 @@ function_rabbitmq () {
 
 
   function_heading "Adding the user and setting the permission"
-  rabbitmqctl add_user roboshop roboshop123
-  rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
+  rabbitmqctl add_user roboshop ${rabbitmq_appuser_password} &>>$log_file
+  rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"   &>>$log_file
   function_status $?
 
 
