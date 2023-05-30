@@ -17,9 +17,12 @@ function_heading () {
 
 function_status () {
 if [ $1 -eq 0 ]; then
-  echo -e "\e[32m -----SUCCESS-----\e[0m" &>>$log_file
+  echo -e "\e[32m -----SUCCESS-----\e[0m"
+  echo -e "\e[35m<<<<<<<<<<<< $1 on  $(date) SUCCESS >>>>>>>>>>>>\e[0m" &>>$log_file
 else
-  echo -e "\e[31m -----FAILURE-----\e[0m" &>>$log_file
+  echo -e "\e[31m -----FAILURE-----\e[0m"
+  echo -e "\e[35m<<<<<<<<<<<< $1 on  $(date) FAILURE >>>>>>>>>>>>\e[0m" &>>$log_file
+  echo -e "\e[33m -----refer to the log file /tmp/roboshop.log for more info -----\e[0m"
   echo -e "\e[33m -----refer to the log file /tmp/roboshop.log for more info -----\e[0m" &>>$log_file
   exit 1
 fi
