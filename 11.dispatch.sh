@@ -2,7 +2,7 @@ common_file=$(realpath "$0")
 common_file_path=$(dirname "$common_file")
 source ${common_file_path}/00.common.sh
 
-
+component=dispatch
 
 function_heading "installing the golang"
 yum install golang -y &>>$log_file
