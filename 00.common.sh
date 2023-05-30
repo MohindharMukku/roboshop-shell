@@ -215,6 +215,7 @@ function_MySQL () {
   if [ -z "my_sql_root_password"]; then
     echo "Input mysql root password is missing"
     exit 1
+    function_status $?
   fi
 
   function_heading "Disableing the old MySQL version"
