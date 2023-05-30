@@ -121,7 +121,7 @@ function_app_prereq () {
   function_heading "create Application user"
   id ${app_user} &>>$log_file
   if [ $? -ne 0 ]; then
-    useradd ${app_user} &>>/tmp/roboshop.log
+    useradd ${app_user} &>>/tmp/roboshop.log    #(id roboshop to verify the user )
   fi
   function_status $?
 
@@ -201,8 +201,9 @@ function_maven() {
   mv target/${component}-1.0.jar ${component}.jar &>>$log_file
   function_status $?
 
-  function_schema_setup
   function_systemd_setup
+  function_schema_setup
+
 }
 
 #------------------------------------------------------------
@@ -250,7 +251,7 @@ function_rabbitmq () {
   function_systemctl
 
   function_heading "Adding the user and setting the permission"
-  rabbitmqctl add_user roboshop ${rabbitmq_appuser_password} &>>$log_file
+  rabbitmqctl add_user roboshop ${rabbitmq_appuser_password} &>>$log_file #sudo rabbitmqctl list_users | grep roboshop (to check user in rabbitmqctl)
   rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"   &>>$log_file
   function_status $?
 
