@@ -228,3 +228,29 @@ function_MySQL () {
   function_status $?
 
 }
+
+#--------------------------------------------------------------
+# erlang package
+
+function_rabbitmq () {
+
+  function_heading "Installing the erlang package"
+  curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash &>>$log_file
+  yum install erlang -y &>>$log_file
+  function_status $?
+
+  function_heading " Installing the $service Server"
+  curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
+  yum install rabbitmq-server -y
+  function_status $?
+
+  function_systemctl
+
+
+  function_heading "Adding the user and setting the permission"
+  rabbitmqctl add_user roboshop roboshop123
+  rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
+  function_status $?
+
+
+}
