@@ -207,3 +207,26 @@ function_maven() {
   function_schema_setup
   function_systemd_setup
 }
+
+#------------------------------------------------------------
+# installation of mysql
+function_MySQL () {
+  function_heading "Disableing the old MySQL version"
+  dnf module disable mysql -y &>>$log_file
+  function_status $?
+
+  function_heading "Coping the mysql.repo file into the correct path"
+  cp ${common_file_path}/mysql.repo /etc/yum.repos.d/mysql.repo &>>$log_file
+  function_status $?
+
+  function_heading "Installing the mysql server"
+  yum install mysql-community-server -y &>>$log_file
+  function_status $?
+
+  function_systemctl
+
+  function_heading "Setting the password"
+  mysql_secure_installation --set-root-pass $my_sql_root_password &>>$log_file
+  function_status $?
+
+}
