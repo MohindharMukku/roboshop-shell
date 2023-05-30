@@ -2,7 +2,13 @@ common_file=$(realpath "$0")
 common_file_path=$(dirname "$common_file")
 source ${common_file_path}/00.common.sh
 
-service=rabbitmq
+service=rabbitmq-server
+
+if [ -z "$rabbitmq_appuser_password" ]; then
+  echo Input Roboshop Appuser Password Missing
+  exit 1
+fi
+
 function_rabbitmq
 
 #function_heading "installing the erlang package"

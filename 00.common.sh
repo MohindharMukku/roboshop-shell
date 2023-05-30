@@ -241,8 +241,10 @@ function_rabbitmq () {
 
   function_heading " Installing the $service Server"
   curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
-  yum install rabbitmq-server -y
   function_status $?
+
+  function_heading "Install RabbitMQ "
+  yum install rabbitmq-server -y &>>$log_file
 
   function_systemctl
 
