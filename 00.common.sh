@@ -79,10 +79,10 @@ function_systemd_setup () {
 #---------------------------------------------------------------
 # Systemctl service for rabbitmq
 function_systemctl () {
-       function_heading "starting the $service service"
-       systemctl enable $service  &>>$log_file
-       systemctl restart $service &>>$log_file
-       function_status $?
+    function_heading "starting the $service service"
+    systemctl enable $service  &>>$log_file
+    systemctl restart $service &>>$log_file
+    function_status $?
 
 }
 
@@ -211,8 +211,6 @@ function_maven() {
 #------------------------------------------------------------
 # installation of mysql
 function_MySQL () {
-
-
 
   function_heading "Disableing the old MySQL version"
   dnf module disable mysql -y &>>$log_file
