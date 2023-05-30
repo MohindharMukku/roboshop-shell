@@ -196,14 +196,15 @@ function_maven() {
   function_app_prereq
 
   function_heading "cleaning the maven "
+  cd /app
   mvn clean package &>>$log_file
   function_status $?
   mv target/${component}-1.0.jar ${component}.jar &>>$log_file
   function_status $?
 
-  function_systemd_setup
   function_schema_setup
 
+  function_systemd_setup
 }
 
 #------------------------------------------------------------
