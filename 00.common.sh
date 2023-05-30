@@ -257,3 +257,28 @@ function_rabbitmq () {
 
 
 }
+
+#------------------------------------------------------
+# python package
+function_python () {
+
+  function_heading  "installing the python package"
+  yum install python36 gcc python3-devel -y &>>"$log_file"
+  function_status $?
+
+
+  function_app_prereq
+
+  function_heading " Install Python Dependencies"
+  pip3.6 install -r requirements.txt &>>$log_file
+  function_status $?
+
+  func_print_head "Update Passwords in System Service file"
+  sed -i -e "s|rabbitmq_appuser_password|${rabbitmq_appuser_password}|" ${script_path}/payment.service &>>$log_file
+  func_stat_check $?
+
+  function_systemd_setup
+
+
+
+}

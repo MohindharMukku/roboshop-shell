@@ -1,16 +1,16 @@
 common_file=$(realpath "$0")
 common_file_path=$(dirname "$common_file")
 source ${common_file_path}/00.common.sh
-mysql_root_password=$1    #RoboShop@1
+rabbitmq_appuser_password=$1    #RoboShop@1
 
-function_heading  "installing the python package"
-yum install python36 gcc python3-devel -y &>>"$log_file"
-pip3.6 install -r requirements.txt
-function_status $?
 
-function_app_prereq
-function_systemd_setup
+if [ -z "$rabbitmq_appuser_password" ]; then
+  echo Input Roboshop Appuser Password Missing
+  exit 1
+fi
 
+component=payment
+function_python
 
 #echo -e "\e[35m<<<<<<<<<<<< adding the user >>>>>>>>>>>>\e[0m"
 #useradd roboshop
