@@ -10,7 +10,7 @@ fi
 
 component="shipping"
 schema_setup=mysql
-function_maven
+function_maven # maven = java
 
 #echo -e "\e[35m<<<<<<<<<<<< adding the user 'roboshop' >>>>>>>>>>>>\e[0m"
 #useradd roboshop
