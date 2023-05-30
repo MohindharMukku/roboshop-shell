@@ -26,7 +26,7 @@ function_systemd_setup
 #cd /app
 #
 #echo -e "\e[35m<<<<<<<<<<<< mving the payment.service to the correct directory >>>>>>>>>>>>\e[0m"
-#cp /home/centos/roboshop-shell/10.payment.service /etc/systemd/system/payment.service
+#cp /home/centos/roboshop-shell/payment.service /etc/systemd/system/payment.service
 #
 #echo -e "\e[35m<<<<<<<<<<<< starting the daemon and payment service >>>>>>>>>>>>\e[0m"
 #systemctl daemon-reload
