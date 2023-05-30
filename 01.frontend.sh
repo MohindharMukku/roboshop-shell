@@ -29,6 +29,7 @@ unzip /tmp/frontend.zip &>>$log_file
 function_status $?
 
 function_heading "Starting the nginx"
-systemctl enable nginx &>>$log_file
+#systemctl enable nginx &>>$log_file
+systemctl start nginx &>>$log_file
 systemctl restart nginx &>>$log_file
 function_status $?
