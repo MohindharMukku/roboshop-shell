@@ -36,7 +36,7 @@ function_systemd_setup
 #go build
 #
 #echo -e "\e[35m<<<<<<<<<<<< mving the systemd file into correct directory >>>>>>>>>>>>\e[0m"
-#cp /home/centos/roboshop-shell/11.dispatch.service /etc/systemd/system/dispatch.service
+#cp /home/centos/roboshop-shell/dispatch.service /etc/systemd/system/dispatch.service
 #
 #echo -e "\e[35m<<<<<<<<<<<< loading the daemon file >>>>>>>>>>>>\e[0m"
 #systemctl daemon-reload
