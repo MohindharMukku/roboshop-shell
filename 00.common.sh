@@ -31,27 +31,27 @@ fi
 #systemctl and component services  services
 
 function_systemd_setup () {
-  function_heading "renameing the service file"
-  #converting the service file name into the normal ex: 03.catalogue.service to catalogue.service
-  service_dir_file=$script_dir
-  service_file=$(find "$service_dir_file" -type f -name "*${component}.service*")
-  for file in $service_file; do
-    old_filename=$(basename "$service_file") &>>$log_file
-
-    #Extract the file name without the float value using the regular expression
-    new_filename=$(echo "$old_filename" | sed 's/^[0-9]*\.//') &>>$log_file
-
-    #rename the file by replacing the orignal file name with the new file name
-     if [ "$old_filename" != "$new_filename" ]; then
-        new_path="${script_dir}/$new_filename"  # Create the new path with the updated file name
-        mv "$service_file" "$new_service_file"  # Rename the file
-        echo "Renamed $service_file to $new_path" &>>$log_file
-      fi
-      done
-  function_status $?
+#  function_heading "renameing the service file"
+#  #converting the service file name into the normal ex: catalogue.service to catalogue.service
+#  service_dir_file=$script_dir
+#  service_file=$(find "$service_dir_file" -type f -name "*${component}.service*")
+#  for file in $service_file; do
+#    old_filename=$(basename "$service_file") &>>$log_file
+#
+#    #Extract the file name without the float value using the regular expression
+#    new_filename=$(echo "$old_filename" | sed 's/^[0-9]*\.//') &>>$log_file
+#
+#    #rename the file by replacing the orignal file name with the new file name
+#     if [ "$old_filename" != "$new_filename" ]; then
+#        new_path="${script_dir}/$new_filename"  # Create the new path with the updated file name
+#        mv "$service_file" "$new_service_file"  # Rename the file
+#        echo "Renamed $service_file to $new_path" &>>$log_file
+#      fi
+#      done
+#  function_status $?
 
   function_heading "coping the service file"
-  find ${script_dir} -type f -name "*${component}.service" &>>$log_file
+#  find ${script_dir} -type f -name "*${component}.service" &>>$log_file
   cp ${script_dir}/${component}.service /etc/systemd/system/${component}.service &>>$log_file
   function_status $?
 
@@ -104,10 +104,10 @@ function_schema_setup () {
   if [ "$schema_setup" == "my_sql" ]; then
     function_heading " installing the my_sql_client"
     yum install mysql -y &>>$log_file
-    function_status $?
+    function_status $?ls
 
     function_heading " load schema "
-    mysql -h mysql-dev.rdevopsb72.online -uroot -p${mysql_root_password} < /app/schema/${component}.sql &>>$log_file
+    mysql -h mysql-dev.mohindhar.tech -uroot -p${mysql_root_password} < /app/schema/${component}.sql &>>$log_file
     function_status $?
   fi
 }
