@@ -68,25 +68,22 @@ function_systemd_setup () {
 }
 #------------------------------------------------------
 # systemctl redis service
-function_systemctl_redis () {
-  function_heading "starting the $service service"
-  systemctl enable $service  &>>$log_file
-   function_status $?
-  systemctl restart $service &>>$log_file
-  function_status $?
-}
-
+#function_systemctl_redis () {
+#  systemctl enable $service  &>>$log_file
+#   function_status $?
+#  systemctl restart $service &>>$log_file
+#  function_status $?
+#}
 
 
 #---------------------------------------------------------------
 # Systemctl service for rabbitmq
 function_systemctl () {
-if [ "$service" == 'rabbitmq']; then
        function_heading "starting the $service service"
        systemctl enable $service  &>>$log_file
        systemctl restart $service &>>$log_file
        function_status $?
-      fi
+
 }
 
 #-------------------------------------------
@@ -189,7 +186,7 @@ function_redis() {
   function_status $?
 
   function_heading "Starting & Enabling the redis"
-  function_systemctl_redis
+  function_systemctl
 }
 
 
