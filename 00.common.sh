@@ -70,6 +70,17 @@ function_systemd_setup () {
    fi
 }
 
+#---------------------------------------------------------------
+# Systemctl service for rabbitmq
+function_systemctl () {
+if [ "$service" == 'rabbitmq']; then
+       function_heading "starting the $service service"
+       systemctl enable $service  &>>$log_file
+       systemctl restart $service &>>$log_file
+       function_status $?
+      fi
+}
+
 #-------------------------------------------
 # schema setup for mongodb and my_sql
 function_schema_setup () {
