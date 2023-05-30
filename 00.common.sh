@@ -110,7 +110,7 @@ function_schema_setup () {
     function_status $?ls
 
     function_heading " load schema "
-    mysql -h mysql-dev.mohindhar.tech -uroot -p${mysql_root_password} < /app/schema/${component}.sql &>>$log_file
+    mysql -h mysql.dev.mohindhar.tech -uroot -p${mysql_root_password} < /app/schema/${component}.sql &>>$log_file
     function_status $?
   fi
 }
