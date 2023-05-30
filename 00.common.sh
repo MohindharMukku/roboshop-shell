@@ -139,9 +139,6 @@ function_app_prereq () {
   unzip /tmp/${component}.zip &>>$log_file
   function_status $?
 
-  function_heading "Downloading the Dependencies"
-  npm install &>>$log_file
-  function_status $?
 }
 
 
