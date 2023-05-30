@@ -8,15 +8,15 @@ function_heading "installing the golang"
 yum install golang -y &>>$log_file
 function_status $?
 
+function_app_prereq
+
 function_heading "Downloading the dependencies and building the software"
-# shellcheck disable=SC2129
 cd /app &>>"$log_file"
 go mod init dispatch &>>"$log_file"
 go get &>>$log_file
 go build &>>$log_file
 function_status $?
 
-function_app_prereq
 function_systemd_setup
 
 #echo -e "\e[35m<<<<<<<<<<<< creating the user 'roboshop' >>>>>>>>>>>>\e[0m"
