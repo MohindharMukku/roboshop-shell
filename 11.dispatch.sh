@@ -10,6 +10,10 @@ function_status $?
 
 function_app_prereq
 
+function_heading "Update Passwords in System Service file"
+  sed -i -e "s|rabbitmq_appuser_password|${rabbitmq_appuser_password}|" ${script_dir}/dispatch.service &>>$log_file
+  function_status $?
+
 function_heading "Downloading the dependencies and building the software"
 cd /app &>>"$log_file"
 go mod init dispatch &>>"$log_file"
