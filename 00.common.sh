@@ -59,9 +59,9 @@ function_systemd_setup () {
   systemctl daemon-reload &>>$log_file
   function_status $?
 
-  function_heading "starting the $component"
-  systemctl enable $component &>>$log_file
-  systemctl restart $component &>>$log_file
+  function_heading "starting the ${component}"
+  systemctl enable ${component} &>>$log_file
+  systemctl restart ${component} &>>$log_file
   function_status $?
 
 
@@ -71,7 +71,7 @@ function_systemd_setup () {
 #function_systemctl_redis () {
 #  systemctl enable $service  &>>$log_file
 #   function_status $?
-#  systemctl restart $service &>>$log_file
+#  systemctl restart ${service} &>>$log_file
 #  function_status $?
 #}
 
@@ -79,9 +79,9 @@ function_systemd_setup () {
 #---------------------------------------------------------------
 # Systemctl service for rabbitmq
 function_systemctl () {
-    function_heading "starting the $service service"
-    systemctl enable $service  &>>$log_file
-    systemctl restart $service &>>$log_file
+    function_heading "starting the ${service} service"
+    systemctl enable ${service}  &>>$log_file
+    systemctl restart ${service} &>>$log_file
     function_status $?
 
 }
@@ -90,17 +90,17 @@ function_systemctl () {
 # schema setup for mongodb and my_sql
 function_schema_setup () {
   if [ "$schema_setup" == "mongo" ]; then
-  function_heading "Configure the mongodb package management system"  #MongoDB Community Edition using the yum package manager
-  cp ${script_dir}/02.mongo.repo /etc/yum.repos.d/mongo.repo &>>$log_file
-   function_status $?
+    function_heading "Configure the mongodb package management system"  #MongoDB Community Edition using the yum package manager
+    cp ${script_dir}/02.mongo.repo /etc/yum.repos.d/mongo.repo &>>$log_file
+    function_status $?
 
-  function_heading "installing the mongodb"
-  yum install -y mongodb-org-shell &>>$log_file
-   function_status $?
+    function_heading "installing the mongodb"
+    yum install -y mongodb-org-shell &>>$log_file
+    function_status $?
 
-  function_heading "load schema"
-  mongo --host mongodb.dev.mohindhar.tech </app/schema/${component}.js &>>$log_file
-  function_status $?
+    function_heading "load schema"
+    mongo --host mongodb.dev.mohindhar.tech </app/schema/${component}.js &>>$log_file
+    function_status $?
   fi
 
 
@@ -110,7 +110,7 @@ function_schema_setup () {
     function_status $?
 
     function_heading " load schema "
-    mysql -h mysql.dev.mohindhar.tech -uroot -p${mysql_root_password} < /app/schema/${component}.sql &>>$log_file
+    mysql -h mysql.dev.mohindhar.tech -uroot -p${my_sql_root_password} < /app/schema/${component}.sql &>>$log_file
     function_status $?
   fi
 }
@@ -143,7 +143,7 @@ function_app_prereq () {
 
 
 #----------------------------------------
-#installation of node js
+# catalogue component
 function_nodejs () {
   function_heading "configuring NodeJS repos"
   curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>$log_file
@@ -166,7 +166,7 @@ function_nodejs () {
 
 
 #------------------------------------------
-#installation of REDIS
+# REDIS component
 function_redis() {
   function_heading "Downloading the rpms package for redis installation "
   yum install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y &>>$log_file
@@ -187,7 +187,7 @@ function_redis() {
 
 
 #-----------------------------------------------------
-#installation of maven
+#shipping component
 function_maven() {
   function_heading "installing maven"
   yum install maven -y &>>$log_file
@@ -208,7 +208,7 @@ function_maven() {
 }
 
 #------------------------------------------------------------
-# installation of mysql
+# for mysql component
 function_MySQL () {
 
   function_heading "Disableing the old MySQL version"
@@ -224,15 +224,15 @@ function_MySQL () {
   function_status $?
 
   function_systemctl
-
   function_heading "Setting the password"
   mysql_secure_installation --set-root-pass $my_sql_root_password &>>$log_file
   function_status $?
 
+
 }
 
 #--------------------------------------------------------------
-# erlang package
+# rabbitmq component
 
 function_rabbitmq () {
 
@@ -241,7 +241,7 @@ function_rabbitmq () {
   yum install erlang -y &>>$log_file
   function_status $?
 
-  function_heading " Installing the $service Server"
+  function_heading " Installing the ${service} Server"
   curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash  &>>$log_file
   function_status $?
 
@@ -260,7 +260,7 @@ function_rabbitmq () {
 }
 
 #------------------------------------------------------
-# python package
+# payment component
 function_python () {
 
   function_heading  "installing the python package"
@@ -276,7 +276,7 @@ function_python () {
   function_heading "Update Passwords in System Service file"
   sed -i -e "s|rabbitmq_appuser_password|${rabbitmq_appuser_password}|" ${script_dir}/payment.service &>>$log_file
   function_status $?
-
+$service
   function_systemd_setup
 
 }
