@@ -107,7 +107,7 @@ function_schema_setup () {
   if [ "$schema_setup" == "my_sql" ]; then
     function_heading " installing the my_sql_client"
     yum install mysql -y &>>$log_file
-    function_status $?ls
+    function_status $?
 
     function_heading " load schema "
     mysql -h mysql.dev.mohindhar.tech -uroot -p${mysql_root_password} < /app/schema/${component}.sql &>>$log_file
