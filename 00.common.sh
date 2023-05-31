@@ -195,7 +195,7 @@ function_maven() {
 
   function_app_prereq
 
-  function_heading "cleaning the maven"
+  function_heading "Dowloading the Dependencies"
   cd /app
   mvn clean package &>>$log_file
   function_status $?
