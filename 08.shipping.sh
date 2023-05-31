@@ -9,7 +9,7 @@ if [ -z "$mysql_root_password" ]; then
 fi
 
 component=shipping
-schema_setup=mysql
+schema_setup=my_sql
 function_maven # maven = java
 
 #echo -e "\e[35m<<<<<<<<<<<< adding the user 'roboshop' >>>>>>>>>>>>\e[0m"

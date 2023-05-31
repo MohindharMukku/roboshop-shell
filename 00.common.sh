@@ -109,7 +109,7 @@ function_schema_setup () {
     yum install mysql -y &>>$log_file
     function_status $?
 
-    function_heading " load schema "
+    function_heading "load schema"
     mysql -h mysql.dev.mohindhar.tech -uroot -p${my_sql_root_password} < /app/schema/${component}.sql &>>$log_file
     function_status $?
   fi
