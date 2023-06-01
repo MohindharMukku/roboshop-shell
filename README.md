@@ -1,4 +1,5 @@
 # DevOps Project Training Led by Instructor [Raghu K](https://raghudevops.urbanpro.com/)
+## https://learndevopsonline.com/
 ### As first module of the training to learn the shell scripting : 
 #### The shell scripts are developed to automate the installation of services on the AWS EC2 instance
 ##### The key Objectives of this shell script modules are:
