@@ -1,1 +1,1 @@
-# roboshop-shell
+# IBM Stan's RoboShop Project
