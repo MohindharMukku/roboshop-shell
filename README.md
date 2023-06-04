@@ -40,8 +40,7 @@ The basic architecture of the project and how the services are interacting with 
 
 
 To Improve:
-     1. Change the Front-end logo and explain the each services with what techno they are using and with logs
-   
-     2. Add the EC2 square around the services
+      1. Change the Front-end logo and explain the each services with what techno they are using and with logs
+      2. Add the EC2 square around the services
     
      
