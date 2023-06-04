@@ -36,3 +36,12 @@ This is a simple example microservices application for use as a sandbox to play 
 The basic architecture of the project and how the services are interacting with other services and objectives of the project.
 ![project](https://github.com/MohindharMukku/roboshop-shell/assets/127215223/0ad805c4-f7df-4cd5-91a1-d70ae864abb9)
 
+
+
+
+To Improve:
+     1. Change the Front-end logo and explain the each services with what techno they are using and with logs
+   
+     2. Add the EC2 square around the services
+    
+     
