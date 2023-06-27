@@ -1,6 +1,6 @@
 common_file=$(realpath "$0")
 common_file_path=$(dirname "$common_file")
-source ${common_file_path}/00.common.sh
+source ${common_file_path}/common.sh
 
 service=rabbitmq-server
 rabbitmq_appuser_password=$1

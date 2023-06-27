@@ -1,6 +1,6 @@
 common_file=$(realpath "$0")
 common_file_path=$(dirname "$common_file")
-source ${common_file_path}/00.common.sh
+source ${common_file_path}/common.sh
 
 function_heading "Setting up the mongo.repo file"
 cp 02.mongo.repo /etc/yum.repos.d/mongo.repo &>>$log_file

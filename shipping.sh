@@ -1,6 +1,6 @@
 common_file=$(realpath "$0")
 common_file_path=$(dirname "$common_file")
-source ${common_file_path}/00.common.sh
+source ${common_file_path}/common.sh
 my_sql_root_password=$1   #RoboShop@1
 
 if [ -z "$my_sql_root_password" ]; then
