@@ -3,7 +3,7 @@ common_file_path=$(dirname "$common_file")
 source ${common_file_path}/common.sh
 
 function_heading "Setting up the mongo.repo file"
-cp 02.mongo.repo /etc/yum.repos.d/mongo.repo &>>$log_file
+cp mongo.repo /etc/yum.repos.d/mongo.repo &>>$log_file
 function_status $?
 
 function_heading "Installing the mongodb"
