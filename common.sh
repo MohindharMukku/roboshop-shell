@@ -91,7 +91,7 @@ function_systemctl () {
 function_schema_setup () {
   if [ "$schema_setup" == "mongo" ]; then
     function_heading "Configure the mongodb package management system"  #MongoDB Community Edition using the yum package manager
-    cp ${script_dir}/02.mongo.repo /etc/yum.repos.d/mongo.repo &>>$log_file
+    cp ${script_dir}/mongo.repo /etc/yum.repos.d/mongo.repo &>>$log_file
     function_status $?
 
     function_heading "installing the mongodb"

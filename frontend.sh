@@ -10,7 +10,7 @@ yum install nginx -y &>>$log_file
 function_status $?
 
 function_heading "Copying the frontend content"
-cp 01.roboshop.conf  /etc/nginx/default.d/roboshop.conf &>>$log_file #here i'm not changing the path, so i'm no need to give the path of config file
+cp roboshop.conf  /etc/nginx/default.d/roboshop.conf &>>$log_file #here i'm not changing the path, so i'm no need to give the path of config file
 #cp /home/centos/roboshop-shell/01.roboshop.conf  /etc/nginx/default.d/roboshop.conf
 function_status $?
 
